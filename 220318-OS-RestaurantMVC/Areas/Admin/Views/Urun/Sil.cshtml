@@ -1,0 +1,29 @@
+﻿
+@model Urun
+
+@{
+	ViewData["Title"] = "Urun Düzenle";
+}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../../images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-end justify-content-center">
+			<div class="col-md-9 ftco-animate text-center mb-5">
+				<h1 class="mb-2 bread">Ürün Silme İşlemi</h1>
+				<p class="breadcrumbs"><span class="mr-2"></span><span><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <i class="fa fa-chevron-right"></i></a></span></p>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="container text-center">
+	<h2>Silinecek Ürün Bilgileri</h2>
+	<form method="post" asp-action="Sil" enctype="multipart/form-data">
+		<div class="form-group m-3">
+			<input asp-for="UrunId" hidden/>
+			<td><img width="250" height="250" src="~/images/uploads/@Model.UrunResimURL" alt="@Model.UrunAdi"></td>			
+		<p>@Model.UrunAdi adlı ürünü silmek istiyor musunuz ?</p>
+			<button class="btn btn-danger">Ürünü Sil</button>
+			<a asp-action="Index" asp-controller="Urun" class="btn btn-secondary">İptal</a>
+		</div>
+	</form>
+</div>

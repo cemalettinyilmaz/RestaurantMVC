@@ -1,0 +1,63 @@
+﻿@{
+	ViewData["Title"] = "Urunler";
+}
+@model List<Urun>
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../../images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-end justify-content-center">
+			<div class="col-md-9 ftco-animate text-center mb-5">
+				<h1 class="mb-2 bread">Ürünler</h1>
+				<p class="breadcrumbs"><span class="mr-2"></span><span><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <i class="fa fa-chevron-right"></i></a></span></p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div class="container">
+	<h1>Ürünler</h1>
+	@if(TempData["mesaj"]!=null)
+	{
+		<div class="alert alert-success" role="alert">
+		@TempData["mesaj"]
+</div>
+	}
+	<a class="btn btn-success mb-2" asp-controller="Urun" asp-action="Yeni">Ürün Ekle</a>
+	<table class="table table-striped text-center">
+		<thead class="thead-dark">
+			<tr>
+				<th>Ürün ID</th>
+				<th>Ürün Adı</th>
+				<th>Ürün Tanımı</th>
+				<th>Ürün Fiyatı</th>
+				<th>Ürün Resmi</th>
+				<th>Ürün Kategorisi</th>
+				<th>Ürün Malzemeleri</th>
+				<th>İşlemler</th>
+			</tr>
+		</thead>
+		<tbody>
+			@{
+				foreach (var item in @Model)
+				{
+					<tr>
+						<td>@item.UrunId</td>
+						<td>@item.UrunAdi</td>
+						<td>@item.UrunTanimi</td>
+						<td>@item.UrunFiyat</td>
+						<td><img class="img-fluid" width="75" height="75" src="~/images/uploads/@item.UrunResimURL" alt="@item.UrunAdi"></td>						
+						<td>@item.Kategori.KategoriAdi</td>
+						<td>@string.Join(",",item.UrunlerMalzemeler.Select(x=>x.Malzeme.MalzemeAdi))</td>
+						<td>
+						<div class="d-flex flex">
+							<a class="btn btn-warning" asp-action="MalzemeDuzenle" asp-controller="Urun"  asp-route-UrunId="@item.UrunId" >Malzeme Düzenle</a>
+							<a class="btn btn-info" asp-action="Duzenle" asp-controller="Urun" asp-route-UrunId="@item.UrunId">Düzenle</a>
+							<a class="btn btn-danger" asp-action="Sil" asp-controller="Urun" asp-route-UrunId="@item.UrunId">Sil</a>
+							</div>
+						</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+</div>
