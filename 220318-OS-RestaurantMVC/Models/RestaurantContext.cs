@@ -21,7 +21,7 @@ namespace _220318_OS_RestaurantMVC.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UrunMalzeme>().HasKey(x => new { x.UrunId, x.MalzemeId });
-            modelBuilder.Entity<Kullanici>().HasData( new Kullanici { Email = "cemalettin@hotmail.com", KullaniciId=1, Password="1234" });
+            modelBuilder.Entity<Kullanici>().HasData( new Kullanici { Email = "email", KullaniciId=1, Password="email" });
         }
 
     }
